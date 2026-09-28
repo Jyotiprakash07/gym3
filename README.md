@@ -1,71 +1,116 @@
-# Forge — Gym Website
+# GYM3
 
-A dual-tone, dark-theme gym website. React (Vite) frontend with a live 3D hero
-animation (Three.js / react-three-fiber) and letter-reveal animated headline
-(Framer Motion), plus a Node/Express backend for the trial-class contact form.
+Modern gym landing page and lead generation website built with React + Vite on the frontend and Express on the backend.
 
-## Design
+This project includes a premium dark-theme design, animated hero section, fitness program cards, membership pricing, trainer highlights, and a working trial-class contact form.
 
-- **Palette:** ink-navy `#10141A` + graphite `#171D24` surfaces, single brass
-  accent `#C9A227` — deliberately not white, not the generic cream/terracotta
-  or near-black/neon-green look.
-- **Type:** Space Grotesk (display) + Manrope (body).
-- **Motion, v2:** the hero 3D rig now responds to your pointer and to scroll
-  (parallax tilt + a dollying camera + a drifting particle field), the
-  headline reveals as masked lines rather than a letter fade, programs are a
-  horizontal scroll-snap carousel (not a static grid), membership cards tilt
-  in 3D toward the cursor with a following glow, there's a custom magnetic
-  cursor, a scroll-progress bar, and a ticker marquee — built to feel driven
-  by interaction rather than a one-shot fade-in template.
+## Features
 
-## Run it
+- Premium dark UI with gym-inspired branding
+- Interactive 3D hero section using Three.js and react-three-fiber
+- Animated headline and scroll-based motion effects
+- Program, stats, trainer, and membership sections
+- Contact form backend for trial-class inquiries
+- Responsive layout for desktop and mobile screens
 
-Two servers: the Vite dev server (frontend) and Express (backend). Open two
-terminals.
+## Tech Stack
 
-**Backend**
+- Frontend: React, Vite, CSS
+- 3D/Animation: Three.js, @react-three/fiber, Framer Motion, GSAP
+- Backend: Node.js, Express
+
+## Project Structure
+
 ```bash
-cd backend
-npm install
-npm run dev
-# → http://localhost:4000
+gym-website/
+├── backend/
+│   ├── routes/
+│   │   └── contact.js
+│   ├── package.json
+│   └── server.js
+├── frontend/
+│   ├── src/
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+├── .gitignore
+├── README.md
+└── package-lock.json
 ```
 
-**Frontend**
+## Installation
+
+### 1) Clone the repository
+
+```bash
+git clone https://github.com/<your-username>/gym3.git
+cd gym3
+```
+
+### 2) Install frontend dependencies
+
 ```bash
 cd frontend
 npm install
+```
+
+### 3) Install backend dependencies
+
+```bash
+cd ../backend
+npm install
+```
+
+## Run Locally
+
+Open two terminals.
+
+### Start backend
+
+```bash
+cd backend
 npm run dev
-# → http://localhost:5173
 ```
 
-The Vite dev server proxies `/api/*` requests to `http://localhost:4000`
-(see `frontend/vite.config.js`), so the contact form works out of the box in
-development.
+Backend runs on:
 
-## What's included
-
-```
-frontend/
-  src/
-    components/
-      Hero3D.jsx          3D rotating plate-stack — react-three-fiber
-      AnimatedHeadline.jsx  letter-by-letter text reveal — framer-motion
-      Navbar.jsx, Programs.jsx, Stats.jsx, Trainers.jsx,
-      Membership.jsx, ContactForm.jsx, Footer.jsx
-    App.jsx / App.css     page assembly + design system (CSS variables)
-backend/
-  server.js              Express app
-  routes/contact.js       POST /api/contact — trial-class request intake
+```bash
+http://localhost:4000
 ```
 
-## Before going live
+### Start frontend
 
-- Swap the in-memory `submissions` array in `backend/routes/contact.js` for a
-  real database (Postgres/MongoDB) or forward it to email/SMS/CRM.
-- Add auth to `GET /api/contact` before deploying — it currently lists all
-  submissions with no access control.
-- Replace the placeholder gym name, address, phone number, and trainer names
-  with the real ones.
-- Run `npm run build` in `frontend/` for a production bundle, and put Express
-  behind a real host (Render, Railway, a VPS with PM2/Nginx, etc.).
+```bash
+cd frontend
+npm run dev
+```
+
+Frontend runs on:
+
+```bash
+http://localhost:5173
+```
+
+The frontend is configured to proxy API requests to the backend through Vite.
+
+## Contact Form API
+
+The backend exposes:
+
+- POST `/api/contact` — submits a trial-class request
+- GET `/api/contact` — lists submitted entries
+- GET `/api/health` — health check endpoint
+
+## Notes
+
+- The current contact submissions are stored in memory.
+- For production, replace the in-memory array with a real database or external service.
+- Add authentication before exposing admin endpoints publicly.
+
+## License
+
+This project is for educational and portfolio use.
+
+## Author
+
+Jyotiprakash
