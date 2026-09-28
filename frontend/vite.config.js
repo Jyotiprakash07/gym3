@@ -8,5 +8,17 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:4000'
     }
+  },
+  build: {
+    chunkSizeWarningLimit: 1500,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom'],
+          motion: ['framer-motion', 'gsap', '@gsap/react'],
+          three: ['three', '@react-three/fiber', '@react-three/drei']
+        }
+      }
+    }
   }
 })
